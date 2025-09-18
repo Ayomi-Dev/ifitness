@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { FaEnvelope, FaEye, FaHome, FaLock, FaUser } from 'react-icons/fa';
+import { FaEnvelope, FaEye, FaEyeSlash, FaHome, FaLock, FaUser } from 'react-icons/fa';
 import { PageWrapper } from '../../utils/PageWrapper';
 import { InputComponent } from '../../utils/InputComponent';
 
@@ -58,7 +58,7 @@ const SignUpPage = () => {
   return (
     <PageWrapper>
         <h1 className='text-center py-3 font-bold'>Sign Up</h1>
-        <form action="" onSubmit={handleSubmit} className='shadow-lg rounded-md w-[500px] mx-auto py-3 px-2 flex flex-col items-center justify-center'>
+        <form action="" onSubmit={handleSubmit} className='shadow-lg rounded-md w-[500px] mx-auto p-4 flex flex-col items-center justify-center'>
             <div className="flex w-full items-center ">
                 <FaUser />
                 <InputComponent id='name' label='Username' type='text' value={name} onChange={(e) => setName(e.target.value)} />
@@ -70,12 +70,16 @@ const SignUpPage = () => {
             <div className="flex items-center w-full">
                 <FaLock />
                 <InputComponent id='password' label='Password' type={passwordType} value={password} onChange={(e) => setPassword(e.target.value)} />
-                <FaEye onClick={ showPassword } className='cursor-pointer' />
+                <FaEye onClick={ showPassword } className={`${passwordType === "text" ? "hidden" : "block"}`} />
+                <FaEyeSlash onClick={ showPassword } className={`${passwordType === "password" ? "hidden" : "block"}`} />
+                            
             </div>
             <div className="flex items-center w-full">
                 <FaLock />
                 <InputComponent id='confirmPassword' label='Confirm Password' type={confirmPasswordType} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />           
-                <FaEye onClick={showConfirmPassword} className='cursor-pointer' />
+                <FaEye onClick={ showConfirmPassword } className={`${confirmPasswordType === "text" ? "hidden" : "block"}`} />
+                <FaEyeSlash onClick={ showConfirmPassword } className={`${confirmPasswordType === "password" ? "hidden" : "block"}`} />
+
             </div>
             <button type="submit" className='px-3 py-1 bg-blue-400 rounded-md text-white mt-3 cursor-pointer'>Sign up</button>
         </form>
